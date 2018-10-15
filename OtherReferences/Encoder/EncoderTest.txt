@@ -1,0 +1,16 @@
+clockwise
+
+a up b low
+a down b high
+
+b up a high
+b down a low
+
+
+anti-clockwise
+
+a up b high
+a down b low
+
+b up a low
+b down a high
