@@ -77,7 +77,7 @@ void HIDDevice::hotkeyOnce(int id){
   m[0] |= (1<<KEY_LEFT_CTRL);
   m[0] |= (1<<KEY_LEFT_ALT);
   m[1] = 0;                   //reserved
-  m[2] = 0x0f;                //6 keys
+  m[2] = KEY_L;               //6 keys
   m[3] = 0;
   m[4] = 0;
   m[5] = 0;
@@ -86,5 +86,10 @@ void HIDDevice::hotkeyOnce(int id){
   HID().SendReport(id,m,8);
   m[0] = 0;
   m[2] = 0;
+  m[3] = 0;
+  m[4] = 0;
+  m[5] = 0;
+  m[6] = 0;
+  m[7] = 0;
   HID().SendReport(id,m,8);
 }
