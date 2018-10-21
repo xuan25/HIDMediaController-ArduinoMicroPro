@@ -23,11 +23,11 @@ void MediaButton::refresh(HIDDevice hid1){
       i++;
       //按下超时（上一首）
       if(i>50){
-        hid1.rtcOnce(_PREVIOUS, 4);
+        hid1.mediaControl(PREVIOUS);
         i = 0;
         while(!digitalRead(e)){
           if(i>1){
-            hid1.rtcOnce(_PREVIOUS, 4);
+            hid1.mediaControl(PREVIOUS);
           }
           delay(500);
           i++;
@@ -42,7 +42,7 @@ void MediaButton::refresh(HIDDevice hid1){
       i++;
       //释放超时（暂停/播放）
       if(i>50){
-        hid1.rtcOnce(_PLAY_PAUSE, 4);
+        hid1.mediaControl(PLAY_PAUSE);
         return;
       }
     }
@@ -52,13 +52,13 @@ void MediaButton::refresh(HIDDevice hid1){
     while(!digitalRead(e)){
       delay(10);
       i++;
-      //按下超时（上一首）
+      //按下超时（下一首）
       if(i>50){
-        hid1.rtcOnce(_NEXT, 4);
+        hid1.mediaControl(NEXT);
         i = 0;
         while(!digitalRead(e)){
           if(i>1){
-            hid1.rtcOnce(_NEXT, 4);
+            hid1.mediaControl(NEXT);
           }
           delay(500);
           i++;
@@ -72,9 +72,9 @@ void MediaButton::refresh(HIDDevice hid1){
     while(digitalRead(e)){
       delay(10);
       i++;
-      //释放超时（暂停/播放）
+      //释放超时（下一首）
       if(i>50){
-        hid1.rtcOnce(_NEXT, 4);
+        hid1.mediaControl(NEXT);
         return;
       }
     }
@@ -85,13 +85,15 @@ void MediaButton::refresh(HIDDevice hid1){
       i++;
       //按下超时（喜欢）
       if(i>50){
-        hid1.hotkeyOnce(2);
+        hid1.keyEvent(KEY_LEFT_CTRL | KEY_LEFT_ALT, KEY_L, 0, 0, 0, 0, 0);
+        hid1.keyEvent(0, 0, 0, 0, 0, 0, 0);
         while(!digitalRead(e)){
         }
         return;
       }
     }
-    hid1.hotkeyOnce(2);
+    hid1.keyEvent(KEY_LEFT_CTRL | KEY_LEFT_ALT, KEY_L, 0, 0, 0, 0, 0);
+    hid1.keyEvent(0, 0, 0, 0, 0, 0, 0);
     return;
 
   }

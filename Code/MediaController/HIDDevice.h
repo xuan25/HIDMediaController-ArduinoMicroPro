@@ -4,21 +4,53 @@
 #include "arduino.h"
 #include <HID.h>
 
-#define _VOLUME_INCREMENT 0x01
-#define _VOLUME_DECREMENT 0x02
-#define _MUTE 0x04
-#define _PLAY_PAUSE 0x08
-#define _NEXT 0x10
-#define _PREVIOUS 0x20
+#define VOLUME_INCREMENT 0x01
+#define VOLUME_DECREMENT 0x02
+#define MUTE 0x04
+#define PLAY_PAUSE 0x08
+#define NEXT 0x10
+#define PREVIOUS 0x20
 
-#define KEY_LEFT_CTRL   0x00
-#define KEY_LEFT_SHIFT    0x01
-#define KEY_LEFT_ALT    0x02
-#define KEY_LEFT_GUI    0x03
-#define KEY_RIGHT_CTRL    0x04
-#define KEY_RIGHT_SHIFT   0x05
-#define KEY_RIGHT_ALT   0x06
-#define KEY_RIGHT_GUI   0x07
+#define MOUSE_LEFT 0x00
+#define MOUSE_RIGHT 0x01
+#define MOUSE_MIDDLE 0x04
+
+#define KEY_LEFT_CTRL 1<<0x00
+#define KEY_LEFT_SHIFT 1<<0x01
+#define KEY_LEFT_ALT 1<<0x02
+#define KEY_LEFT_GUI 1<<0x03
+#define KEY_RIGHT_CTRL 1<<0x04
+#define KEY_RIGHT_SHIFT 1<<0x05
+#define KEY_RIGHT_ALT 1<<0x06
+#define KEY_RIGHT_GUI 1<<0x07
+
+#define KEY_UP_ARROW    0x52
+#define KEY_DOWN_ARROW    0x51
+#define KEY_LEFT_ARROW    0x50
+#define KEY_RIGHT_ARROW   0x4f
+#define KEY_BACKSPACE   0x2a
+#define KEY_TAB       0x2b
+#define KEY_RETURN      0x28
+#define KEY_ESC       0x29
+#define KEY_INSERT      0x49
+#define KEY_DELETE      0x4c
+#define KEY_PAGE_UP     0x4b
+#define KEY_PAGE_DOWN   0x4e
+#define KEY_HOME      0x4a
+#define KEY_END       0x4d
+#define KEY_CAPS_LOCK   0x39
+#define KEY_F1        0x3a
+#define KEY_F2        0x3b
+#define KEY_F3        0x3c
+#define KEY_F4        0x3d
+#define KEY_F5        0x3e
+#define KEY_F6        0x3f
+#define KEY_F7        0x40
+#define KEY_F8        0x41
+#define KEY_F9        0x42
+#define KEY_F10       0x43
+#define KEY_F11       0x44
+#define KEY_F12       0x45
 
 #define KEY_A    0x04
 #define KEY_B    0x05
@@ -47,20 +79,14 @@
 #define KEY_Y    0x1c
 #define KEY_Z    0x1d
 
-typedef struct
-{
-  uint8_t modifiers;
-  uint8_t reserved;
-  uint8_t keys[6];
-} KeyReport;
-
 class HIDDevice{
   private:static const uint8_t _hidReportDescriptor[] PROGMEM; 
 
   public:HIDDevice();
   public:void begin();
-  public:void rtcOnce(u8 c, int id);
-  public:void hotkeyOnce(int id);
+  public:void mediaControl(uint8_t c);
+  public:void keyEvent(uint8_t modifiers, uint8_t key1, uint8_t key2, uint8_t key3, uint8_t key4, uint8_t key5, uint8_t key6);
+  public:void mouseEvent(uint8_t buttons, uint8_t x, uint8_t y, uint8_t wheel);
 };
 
 #endif

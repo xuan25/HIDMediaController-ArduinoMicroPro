@@ -17,10 +17,10 @@ void setup() {
 void loop() {
   int re = enc1.refresh();
   if(re == 1){
-    hid1.rtcOnce(_VOLUME_INCREMENT, 4);
+    hid1.mediaControl(VOLUME_INCREMENT);
   }
   else if(re == -1){
-    hid1.rtcOnce(_VOLUME_DECREMENT, 4);
+    hid1.mediaControl(VOLUME_DECREMENT);
   }
 
   btn1.refresh(hid1);
