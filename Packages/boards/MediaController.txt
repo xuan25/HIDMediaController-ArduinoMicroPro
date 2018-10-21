@@ -1,0 +1,34 @@
+##############################################################
+
+MC.name=Media Controller
+MC.vid.0=0x0000
+MC.pid.0=0x0000
+
+MC.upload.tool=avrdude
+MC.upload.protocol=avr109
+MC.upload.maximum_size=28672
+MC.upload.maximum_data_size=2560
+MC.upload.speed=57600
+MC.upload.disable_flushing=true
+MC.upload.use_1200bps_touch=true
+MC.upload.wait_for_upload_port=true
+
+MC.bootloader.tool=avrdude
+MC.bootloader.low_fuses=0xff
+MC.bootloader.high_fuses=0xd8
+MC.bootloader.extended_fuses=0xcb
+MC.bootloader.file=caterina/Caterina-Leonardo.hex
+MC.bootloader.unlock_bits=0x3F
+MC.bootloader.lock_bits=0x2F
+
+MC.build.mcu=atmega32u4
+MC.build.f_cpu=16000000L
+MC.build.vid=0x0000
+MC.build.pid=0x0000
+MC.build.usb_product="Media Controller"
+MC.build.board=AVR
+MC.build.core=arduino
+MC.build.variant=leonardo
+MC.build.extra_flags={build.usb_flags}
+
+##############################################################
