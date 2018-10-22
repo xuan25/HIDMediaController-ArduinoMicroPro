@@ -92,33 +92,16 @@ void HIDDevice::begin(){
 }
 
 void HIDDevice::mediaControl(uint8_t c){
-  uint8_t m[2];
-  m[0] = c;
-  m[1] = 0;
-  HID().SendReport(4,m,2);
-  m[0] = 0;
-  m[1] = 0;
+  uint8_t m[2] = {c, 0};
   HID().SendReport(4,m,2);
 }
 
 void HIDDevice::keyEvent(uint8_t modifiers, uint8_t key1, uint8_t key2, uint8_t key3, uint8_t key4, uint8_t key5, uint8_t key6){
-  uint8_t m[8];
-  m[0] = modifiers;
-  m[1] = 0;
-  m[2] = key1;
-  m[3] = key2;
-  m[4] = key3;
-  m[5] = key4;
-  m[6] = key5;
-  m[7] = key6;
+  uint8_t m[8] = {modifiers, 0, key1, key2, key3, key4, key5, key6};
   HID().SendReport(2,m,8);
 }
 
 void HIDDevice::mouseEvent(uint8_t buttons, uint8_t x, uint8_t y, uint8_t wheel){
-  uint8_t m[4];
-  m[0] = buttons;
-  m[1] = x;
-  m[2] = y;
-  m[3] = wheel;
+  uint8_t m[4] = {buttons, x, y, wheel};
   HID().SendReport(1,m,4);
 }

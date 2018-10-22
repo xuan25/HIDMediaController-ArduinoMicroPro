@@ -25,11 +25,13 @@ void MediaButton::refresh(HIDDevice hid1){
       if(i>50){
         //#按钮长按保持#
         hid1.mediaControl(PREVIOUS);
+        hid1.mediaControl(0);
         i = 0;
         while(!digitalRead(e)){
           if(i>1){
             //#按钮长按保持循环#
             hid1.mediaControl(PREVIOUS);
+            hid1.mediaControl(0);
           }
           delay(500);
           i++;
@@ -46,6 +48,7 @@ void MediaButton::refresh(HIDDevice hid1){
       if(i>50){
         //#按钮短按#
         hid1.mediaControl(PLAY_PAUSE);
+        hid1.mediaControl(0);
         return;
       }
     }
@@ -59,11 +62,13 @@ void MediaButton::refresh(HIDDevice hid1){
       if(i>50){
         //#按钮双击保持#
         hid1.mediaControl(NEXT);
+        hid1.mediaControl(0);
         i = 0;
         while(!digitalRead(e)){
           if(i>1){
             //#按钮双击保持循环#
             hid1.mediaControl(NEXT);
+            hid1.mediaControl(0);
           }
           delay(500);
           i++;
@@ -81,6 +86,7 @@ void MediaButton::refresh(HIDDevice hid1){
       if(i>50){
         //#按钮双击#
         hid1.mediaControl(NEXT);
+        hid1.mediaControl(0);
         return;
       }
     }
