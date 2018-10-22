@@ -17,9 +17,11 @@ void setup() {
 void loop() {
   int re = enc1.refresh();
   if(re == 1){
+    //#编码器正转#
     hid1.mediaControl(VOLUME_INCREMENT);
   }
   else if(re == -1){
+    //#编码器反转#
     hid1.mediaControl(VOLUME_DECREMENT);
   }
 

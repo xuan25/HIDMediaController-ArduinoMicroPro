@@ -23,10 +23,12 @@ void MediaButton::refresh(HIDDevice hid1){
       i++;
       //按下超时（上一首）
       if(i>50){
+        //#按钮长按保持#
         hid1.mediaControl(PREVIOUS);
         i = 0;
         while(!digitalRead(e)){
           if(i>1){
+            //#按钮长按保持循环#
             hid1.mediaControl(PREVIOUS);
           }
           delay(500);
@@ -42,6 +44,7 @@ void MediaButton::refresh(HIDDevice hid1){
       i++;
       //释放超时（暂停/播放）
       if(i>50){
+        //#按钮短按#
         hid1.mediaControl(PLAY_PAUSE);
         return;
       }
@@ -54,10 +57,12 @@ void MediaButton::refresh(HIDDevice hid1){
       i++;
       //按下超时（下一首）
       if(i>50){
+        //#按钮双击保持#
         hid1.mediaControl(NEXT);
         i = 0;
         while(!digitalRead(e)){
           if(i>1){
+            //#按钮双击保持循环#
             hid1.mediaControl(NEXT);
           }
           delay(500);
@@ -74,6 +79,7 @@ void MediaButton::refresh(HIDDevice hid1){
       i++;
       //释放超时（下一首）
       if(i>50){
+        //#按钮双击#
         hid1.mediaControl(NEXT);
         return;
       }
@@ -85,13 +91,17 @@ void MediaButton::refresh(HIDDevice hid1){
       i++;
       //按下超时（喜欢）
       if(i>50){
+        //#按钮三击保持#
         hid1.keyEvent(KEY_LEFT_CTRL | KEY_LEFT_ALT, KEY_L, 0, 0, 0, 0, 0);
         hid1.keyEvent(0, 0, 0, 0, 0, 0, 0);
         while(!digitalRead(e)){
+          //#按钮三击保持循环#
+          delay(500);
         }
         return;
       }
     }
+    //#按钮三击#
     hid1.keyEvent(KEY_LEFT_CTRL | KEY_LEFT_ALT, KEY_L, 0, 0, 0, 0, 0);
     hid1.keyEvent(0, 0, 0, 0, 0, 0, 0);
     return;
