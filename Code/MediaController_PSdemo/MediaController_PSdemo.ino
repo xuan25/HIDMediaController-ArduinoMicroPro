@@ -19,20 +19,20 @@ void loop() {
   if(re == 1){
     //Zoom in
     hid1.keyEvent(KEY_LEFT_ALT, 0, 0, 0, 0, 0, 0);
-    delay(20);
+    delay(50);
     hid1.mouseEvent(0,0,0,1);
-    delay(20);
+    delay(50);
     hid1.keyEvent(0, 0, 0, 0, 0, 0, 0);
-    delay(20);
+    delay(50);
   }
   else if(re == -1){
     //Zoom out
     hid1.keyEvent(KEY_LEFT_ALT, 0, 0, 0, 0, 0, 0);
-    delay(20);
+    delay(50);
     hid1.mouseEvent(0,0,0,-1);
-    delay(20);
+    delay(50);
     hid1.keyEvent(0, 0, 0, 0, 0, 0, 0);
-    delay(20);
+    delay(50);
   }
 
   btn1.refresh(hid1);
