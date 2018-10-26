@@ -19,10 +19,12 @@ void loop() {
   if(re == 1){
     //#编码器正转#
     hid1.mediaControl(VOLUME_INCREMENT);
+    hid1.mediaControl(0);
   }
   else if(re == -1){
     //#编码器反转#
     hid1.mediaControl(VOLUME_DECREMENT);
+    hid1.mediaControl(0);
   }
 
   btn1.refresh(hid1);
