@@ -14,17 +14,22 @@ void setup() {
   hid1.begin();
 }
 
+int total = 0;
+int threshold = 5;
 void loop() {
   int re = enc1.refresh();
-  if(re == 1){
+  total += re;
+  if(total == threshold){
     //#编码器正转#
     hid1.mediaControl(VOLUME_INCREMENT);
     hid1.mediaControl(0);
+    total = 0;
   }
-  else if(re == -1){
+  else if(total == -threshold){
     //#编码器反转#
     hid1.mediaControl(VOLUME_DECREMENT);
     hid1.mediaControl(0);
+    total = 0;
   }
 
   btn1.refresh(hid1);

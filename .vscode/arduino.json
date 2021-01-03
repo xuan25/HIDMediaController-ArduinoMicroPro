@@ -1,0 +1,6 @@
+{
+    "programmer": "AVRISP mkII",
+    "board": "arduino:avr:leonardo",
+    "port": "COM7",
+    "sketch": "Code\\MediaController\\MediaController.ino"
+}
